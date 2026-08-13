@@ -10,6 +10,7 @@ import ServiceRequestForm from '../components/ServiceRequestForm.astro';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import { business, fullAddress } from '../data/business';
 import { publishedServices } from '../data/services';
+import { withBase } from '../scripts/paths';
 
 const title = 'Woodward Automotive | Auto Repair in Fort Wayne, IN';
 const description =
@@ -55,7 +56,7 @@ const description =
           <h2 class="font-display text-3xl md:text-4xl text-ink-900">What we fix</h2>
           <p class="text-ink-500 mt-2">Cars and light trucks — tell us what you're noticing.</p>
         </div>
-        <a href="/services/" class="font-semibold text-signal hover:underline">See all services</a>
+        <a href={withBase('/services/')} class="font-semibold text-signal hover:underline">See all services</a>
       </div>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {publishedServices.map((service) => <ServiceCard service={service} />)}

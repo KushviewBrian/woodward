@@ -14,9 +14,12 @@ the codebase for `CONFIRM` to find every instance in context.
       real address form submissions should land in (and a backup CC).
 - [ ] **Google Business Profile.** Confirm claim status and URL; add to `sameAs` in
       `src/components/Schema.astro` once known.
-- [ ] **Domain / hosting confirmation.** `astro.config.mjs` and `public/CNAME` assume
-      `www.woodwardautomotivellc.com`. Confirm this is the intended domain before DNS
-      cutover.
+- [ ] **Domain cutover.** The site currently builds for
+      `https://kushviewbrian.github.io/woodward/` (no custom domain yet). Once
+      `www.woodwardautomotivellc.com` is pointed at GitHub Pages via Cloudflare: in
+      `astro.config.mjs` set `site` back to `https://www.woodwardautomotivellc.com` and
+      remove the `base: '/woodward'` line, and re-add `public/CNAME` containing
+      `www.woodwardautomotivellc.com`.
 
 ## Blocks publishing specific pages
 

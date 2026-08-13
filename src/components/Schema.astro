@@ -1,15 +1,16 @@
 ---
 import { business } from '../data/business';
 import { publishedServices } from '../data/services';
+import { withBase } from '../scripts/paths';
 
-const siteUrl = 'https://www.woodwardautomotivellc.com';
+const siteUrl = new URL(withBase('/'), Astro.site).toString();
 
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'AutoRepair',
-  '@id': `${siteUrl}/#business`,
+  '@id': `${siteUrl}#business`,
   name: business.name,
-  url: `${siteUrl}/`,
+  url: siteUrl,
   telephone: business.phoneE164,
   address: {
     '@type': 'PostalAddress',

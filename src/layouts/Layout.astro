@@ -4,6 +4,7 @@ import UtilityBar from '../components/UtilityBar.astro';
 import Footer from '../components/Footer.astro';
 import StickyMobileBar from '../components/StickyMobileBar.astro';
 import Schema from '../components/Schema.astro';
+import { withBase } from '../scripts/paths';
 import '../styles/global.css';
 
 interface Props {
@@ -26,7 +27,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

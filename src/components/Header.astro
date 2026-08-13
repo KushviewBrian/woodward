@@ -1,6 +1,7 @@
 ---
 import { business } from '../data/business';
 import Button from './Button.astro';
+import { withBase } from '../scripts/paths';
 
 const navLinks = [
   { href: '/services/', label: 'Services' },
@@ -9,12 +10,12 @@ const navLinks = [
   { href: '/contact/', label: 'Contact' },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
 ---
 
 <header class="border-b border-steel-300 bg-paper">
   <div class="mx-auto max-w-[1200px] px-6 py-4 flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2 shrink-0">
+    <a href={withBase('/')} class="flex items-center gap-2 shrink-0">
       <span class="font-display text-xl md:text-2xl tracking-tight text-ink-900">
         Woodward <span class="text-signal">Automotive</span>
       </span>
@@ -24,7 +25,7 @@ const currentPath = Astro.url.pathname;
       {
         navLinks.map((link) => (
           <a
-            href={link.href}
+            href={withBase(link.href)}
             class:list={[
               'text-ink-700 hover:text-ink-900 font-medium transition-colors',
               { 'text-ink-900 underline underline-offset-4 decoration-signal decoration-2': currentPath === link.href },

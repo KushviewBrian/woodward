@@ -1,5 +1,6 @@
 ---
 import { business } from '../data/business';
+import { withBase } from '../scripts/paths';
 
 const mapsHref = `https://www.google.com/maps/search/?api=1&query=${business.mapsQuery}`;
 ---
@@ -22,7 +23,7 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${business.map
     </svg>
     <span class="text-xs font-medium">Directions</span>
   </a>
-  <a href="/contact/" id="sticky-request-link" class="flex flex-col items-center justify-center gap-1 py-2.5 min-h-12 bg-signal">
+  <a href={withBase('/contact/')} id="sticky-request-link" class="flex flex-col items-center justify-center gap-1 py-2.5 min-h-12 bg-signal">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>

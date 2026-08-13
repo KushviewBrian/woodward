@@ -4,6 +4,7 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import ServiceRequestForm from '../../components/ServiceRequestForm.astro';
 import ReviewsSection from '../../components/ReviewsSection.astro';
 import { services } from '../../data/services';
+import { withBase } from '../../scripts/paths';
 
 const service = services.find((s) => s.slug === 'oil-changes-maintenance')!;
 
@@ -53,9 +54,9 @@ const description =
 
       <h2 class="font-display text-2xl text-ink-900 mb-4">Related services</h2>
       <div class="flex flex-wrap gap-3">
-        <a href="/services/engine-diagnostics/" class="text-signal font-semibold hover:underline">Engine diagnostics</a>
+        <a href={withBase('/services/engine-diagnostics/')} class="text-signal font-semibold hover:underline">Engine diagnostics</a>
         <span class="text-steel-300">&middot;</span>
-        <a href="/services/brake-repair/" class="text-signal font-semibold hover:underline">Brake repair</a>
+        <a href={withBase('/services/brake-repair/')} class="text-signal font-semibold hover:underline">Brake repair</a>
       </div>
     </div>
 

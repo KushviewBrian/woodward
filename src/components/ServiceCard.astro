@@ -1,5 +1,6 @@
 ---
 import type { Service } from '../data/services';
+import { withBase } from '../scripts/paths';
 
 interface Props {
   service: Service;
@@ -9,7 +10,7 @@ const { service } = Astro.props;
 ---
 
 <a
-  href={`/services/${service.slug}/`}
+  href={withBase(`/services/${service.slug}/`)}
   class="group flex flex-col justify-between rounded border border-steel-300 bg-paper p-6 hover:border-signal hover:shadow-sm transition-all"
 >
   <div>

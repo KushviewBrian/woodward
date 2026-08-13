@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../scripts/paths';
+
 interface Props {
   href: string;
   variant?: 'primary' | 'secondary' | 'ghost';
@@ -7,6 +9,7 @@ interface Props {
 }
 
 const { href, variant = 'primary', class: className = '', ariaLabel } = Astro.props;
+const resolvedHref = href.startsWith('/') ? withBase(href) : href;
 
 const base =
   'inline-flex items-center justify-center gap-2 rounded px-6 py-3 min-h-12 font-semibold text-base transition-colors duration-150 ease-out';
@@ -18,6 +21,6 @@ const variants = {
 };
 ---
 
-<a href={href} class={`${base} ${variants[variant]} ${className}`} aria-label={ariaLabel}>
+<a href={resolvedHref} class={`${base} ${variants[variant]} ${className}`} aria-label={ariaLabel}>
   <slot />
 </a>

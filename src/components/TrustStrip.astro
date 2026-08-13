@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../scripts/paths';
+
 const items = [
   {
     label: 'Honest service',
@@ -27,7 +29,7 @@ const items = [
   {
     items.map((item) => (
       <li>
-        <a href={item.href} class="block h-full rounded border border-steel-300 bg-paper-alt p-4 hover:border-signal transition-colors">
+        <a href={withBase(item.href)} class="block h-full rounded border border-steel-300 bg-paper-alt p-4 hover:border-signal transition-colors">
           <p class="font-display text-sm md:text-base text-ink-900">{item.label}</p>
           <p class="text-xs md:text-sm text-ink-500 mt-1">{item.detail}</p>
         </a>
