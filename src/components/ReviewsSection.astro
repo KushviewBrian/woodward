@@ -1,0 +1,30 @@
+---
+import { reviews } from '../data/reviews';
+import ReviewCard from './ReviewCard.astro';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const shown = limit ? reviews.slice(0, limit) : reviews;
+---
+
+{
+  shown.length > 0 ? (
+    <div class="grid gap-6 md:grid-cols-3">
+      {shown.map((review) => <ReviewCard review={review} />)}
+    </div>
+  ) : (
+    <div class="rounded border border-dashed border-steel-300 bg-paper-alt p-8 text-center">
+      <p class="text-ink-500">
+        We're collecting a few reviews to feature here. In the meantime, you can read verified
+        reviews on
+        {' '}
+        <a href="https://www.yelp.com/biz/woodward-automotive-fort-wayne" target="_blank" rel="noopener" class="text-signal font-semibold hover:underline">
+          Yelp
+        </a>.
+      </p>
+    </div>
+  )
+}

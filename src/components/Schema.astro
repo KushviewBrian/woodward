@@ -1,0 +1,44 @@
+---
+import { business } from '../data/business';
+import { publishedServices } from '../data/services';
+
+const siteUrl = 'https://www.woodwardautomotivellc.com';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  '@id': `${siteUrl}/#business`,
+  name: business.name,
+  url: `${siteUrl}/`,
+  telephone: business.phoneE164,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.streetAddress,
+    addressLocality: business.city,
+    addressRegion: business.state,
+    postalCode: business.zip,
+    addressCountry: 'US',
+  },
+  openingHoursSpecification: business.hours.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.day,
+    opens: h.open,
+    closes: h.close,
+  })),
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'City',
+    name: 'Fort Wayne',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Auto Repair Services',
+    itemListElement: publishedServices.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.name },
+    })),
+  },
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(localBusiness)} />

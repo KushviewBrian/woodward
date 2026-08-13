@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  class?: string;
+  ariaLabel?: string;
+}
+
+const { href, variant = 'primary', class: className = '', ariaLabel } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded px-6 py-3 min-h-12 font-semibold text-base transition-colors duration-150 ease-out';
+
+const variants = {
+  primary: 'bg-signal text-white hover:bg-signal-hover',
+  secondary: 'bg-ink-900 text-paper hover:bg-ink-700',
+  ghost: 'bg-transparent text-ink-900 border border-steel-300 hover:bg-paper-alt',
+};
+---
+
+<a href={href} class={`${base} ${variants[variant]} ${className}`} aria-label={ariaLabel}>
+  <slot />
+</a>

@@ -1,0 +1,30 @@
+---
+import { business, fullAddress } from '../data/business';
+
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${business.mapsQuery}`;
+---
+
+<div class="rounded border border-steel-300 overflow-hidden bg-paper-alt">
+  <a href={mapsHref} target="_blank" rel="noopener" class="block relative group" aria-label="Get directions to 3909 Fourier Drive, Suite E on Google Maps">
+    <svg viewBox="0 0 400 220" class="w-full h-auto" role="presentation" aria-hidden="true">
+      <rect width="400" height="220" fill="#f0ede8" />
+      <path d="M0 60 H400 M0 140 H400" stroke="#c9d0d6" stroke-width="2" />
+      <path d="M90 0 V220 M310 0 V220" stroke="#c9d0d6" stroke-width="2" />
+      <circle cx="200" cy="100" r="10" fill="#d6480f" />
+      <path d="M200 100 L200 130 L190 118 M200 130 L210 118" stroke="#d6480f" stroke-width="0" fill="none" />
+    </svg>
+    <span class="absolute inset-0 flex items-center justify-center">
+      <span class="inline-flex items-center gap-2 rounded bg-ink-900 text-paper px-4 py-2 text-sm font-semibold shadow group-hover:bg-signal transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Get directions
+      </span>
+    </span>
+  </a>
+  <div class="p-4 text-sm text-ink-700">
+    <p class="font-semibold text-ink-900">{fullAddress}</p>
+    <p class="mt-1 text-ink-500">{business.hoursDisplay}</p>
+  </div>
+</div>

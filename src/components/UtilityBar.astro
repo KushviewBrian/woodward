@@ -1,0 +1,32 @@
+---
+import { business, fullAddress } from '../data/business';
+import { getOpenStatus } from '../scripts/hours';
+
+const status = getOpenStatus();
+---
+
+<div class="hidden md:block bg-ink-900 text-paper text-sm">
+  <div class="mx-auto max-w-[1200px] px-6 py-2 flex items-center justify-between gap-6">
+    <div class="flex items-center gap-6">
+      <span id="utility-hours" data-open={status.isOpen ? 'true' : 'false'}>
+        {status.label}
+      </span>
+      <span class="text-steel-300" aria-hidden="true">·</span>
+      <span>{fullAddress}</span>
+    </div>
+    <a href={business.phoneHref} class="font-semibold hover:text-signal transition-colors">
+      {business.phoneDisplay}
+    </a>
+  </div>
+</div>
+
+<script>
+  import { getOpenStatus } from '../scripts/hours';
+
+  const el = document.getElementById('utility-hours');
+  if (el) {
+    const status = getOpenStatus();
+    el.textContent = status.label;
+    el.dataset.open = String(status.isOpen);
+  }
+</script>

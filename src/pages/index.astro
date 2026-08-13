@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import MapBlock from '../components/MapBlock.astro';
+import ServiceRequestForm from '../components/ServiceRequestForm.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { business, fullAddress } from '../data/business';
+import { publishedServices } from '../data/services';
+
+const title = 'Woodward Automotive | Auto Repair in Fort Wayne, IN';
+const description =
+  'Honest auto repair for cars and light trucks in Fort Wayne. Diagnostics, brakes, oil changes, suspension. Call (260) 710-8995.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <section class="bg-ink-900 text-paper">
+    <div class="mx-auto max-w-[1200px] px-6 py-16 md:py-24 grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <h1 class="font-display text-4xl md:text-6xl leading-[1.05] mb-5">
+          Straightforward auto repair in Fort Wayne.
+        </h1>
+        <p class="text-lg text-steel-300 leading-relaxed max-w-[46ch] mb-8">
+          Dependable maintenance and repair for cars and light trucks. Clear communication, fair
+          pricing, and work you can trust.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-6">
+          <Button href="/contact/" variant="primary">Request Service</Button>
+          <Button href={business.phoneHref} variant="ghost" class="!border-steel-300 !text-paper hover:!bg-ink-700">
+            Call {business.phoneDisplay}
+          </Button>
+        </div>
+        <p class="text-sm text-steel-300">
+          Cars &amp; light trucks &middot; {business.hoursDisplay} &middot; {business.streetAddress}
+        </p>
+      </div>
+      <PhotoPlaceholder label="Shop exterior — Fourier Dr" aspect="aspect-[4/3]" />
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
+    <TrustStrip />
+  </section>
+
+  <!-- Services -->
+  <section class="bg-paper-alt border-y border-steel-300">
+    <div class="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
+      <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl text-ink-900">What we fix</h2>
+          <p class="text-ink-500 mt-2">Cars and light trucks — tell us what you're noticing.</p>
+        </div>
+        <a href="/services/" class="font-semibold text-signal hover:underline">See all services</a>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {publishedServices.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
+    <h2 class="font-display text-3xl md:text-4xl text-ink-900 mb-10">What to expect</h2>
+    <ProcessSteps />
+  </section>
+
+  <!-- Reviews -->
+  <section class="bg-paper-alt border-y border-steel-300">
+    <div class="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
+      <h2 class="font-display text-3xl md:text-4xl text-ink-900 mb-10">What Fort Wayne says</h2>
+      <ReviewsSection limit={3} />
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="mx-auto max-w-[1200px] px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2 md:items-center">
+    <PhotoPlaceholder label="Owner & team" aspect="aspect-[4/3]" class="md:order-2" />
+    <div class="md:order-1">
+      <h2 class="font-display text-3xl md:text-4xl text-ink-900 mb-4">A Fort Wayne shop, built to last</h2>
+      <p class="text-ink-700 leading-relaxed mb-4 max-w-[60ch]">
+        Woodward Automotive is an independent shop serving Fort Wayne and the surrounding area. We
+        work on cars and light trucks — all makes and models — and we'd rather tell you the truth
+        about what your car needs than sell you what it doesn't.
+      </p>
+      <Button href="/about/" variant="ghost">Meet the team</Button>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="bg-paper-alt border-y border-steel-300">
+    <div class="mx-auto max-w-[1200px] px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl text-ink-900 mb-4">Find us</h2>
+        <p class="text-ink-700 leading-relaxed mb-2">{fullAddress}</p>
+        <p class="text-ink-500 mb-6">{business.hoursDisplay}</p>
+        <a href={business.phoneHref} class="font-semibold text-signal hover:underline">
+          {business.phoneDisplay}
+        </a>
+      </div>
+      <MapBlock />
+    </div>
+  </section>
+
+  <!-- Final conversion panel -->
+  <section id="request-service" class="mx-auto max-w-[1200px] px-6 py-16 md:py-20">
+    <div class="rounded border border-steel-300 bg-paper-alt p-6 md:p-10 grid gap-10 md:grid-cols-[1fr_1.4fr]">
+      <div>
+        <h2 class="font-display text-3xl text-ink-900 mb-3">Need to schedule service?</h2>
+        <p class="text-ink-500 leading-relaxed mb-6">
+          Send us a request and we'll follow up during business hours, or give us a call.
+        </p>
+        <a href={business.phoneHref} class="font-semibold text-signal hover:underline">
+          {business.phoneDisplay}
+        </a>
+      </div>
+      <ServiceRequestForm />
+    </div>
+  </section>
+</Layout>

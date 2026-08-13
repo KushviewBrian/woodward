@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import MapBlock from '../components/MapBlock.astro';
+import { business } from '../data/business';
+
+const title = 'Auto Repair Near Me in Fort Wayne, IN | Woodward Automotive';
+const description =
+  'Locally owned auto repair on the north side of Fort Wayne, off Coldwater Rd near I-69. Cars and light trucks, all makes and models.';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[900px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Fort Wayne Auto Repair' }]} />
+    <h1 class="font-display text-3xl md:text-5xl text-ink-900 mb-6">Auto repair on the north side of Fort Wayne</h1>
+
+    <div class="prose-body">
+      <p class="text-ink-700 leading-relaxed mb-4">
+        Woodward Automotive is on Fourier Drive, in the office and light-industrial area off
+        Coldwater Road near I-69 — convenient if you're coming from the north side, Dupont, or
+        anywhere along the Coldwater corridor without wanting to fight traffic downtown.
+      </p>
+      <p class="text-ink-700 leading-relaxed mb-4">
+        <!-- CONFIRM: owner to supply any real neighborhood/service-area language —
+             specific subdivisions, cross-streets, or landmarks customers actually
+             reference when giving directions. Do not publish generic "we proudly
+             serve X, Y, Z" boilerplate. -->
+        [CONTENT PLACEHOLDER: add specific, owner-approved service-area language here —
+        neighborhoods, cross-streets, or landmarks customers actually use. Do not fill this
+        with generic city-name boilerplate.]
+      </p>
+      <p class="text-ink-700 leading-relaxed mb-8">
+        Suite E faces the rear of the building — if it's your first time in, give us a call and
+        we'll help you find the door.
+        <!-- CONFIRM: verify this wayfinding detail with the owner before publishing. -->
+      </p>
+
+      <h2 class="font-display text-2xl text-ink-900 mb-4">What we work on</h2>
+      <p class="text-ink-700 leading-relaxed mb-8">
+        Cars and light trucks — all makes and models. Diagnostics, brakes, oil changes and
+        maintenance, suspension and steering. If you're not sure whether we can help, the
+        fastest way to find out is to call.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-start my-10">
+      <MapBlock />
+      <div class="rounded border border-steel-300 bg-paper-alt p-6">
+        <h2 class="font-display text-lg text-ink-900 mb-3">Get in touch</h2>
+        <a href={business.phoneHref} class="block font-semibold text-lg text-ink-900 hover:text-signal transition-colors mb-4">
+          {business.phoneDisplay}
+        </a>
+        <Button href="/contact/" variant="primary" class="w-full">Request Service</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

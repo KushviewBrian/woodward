@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { business } from '../data/business';
+
+const title = 'Accessibility Statement | Woodward Automotive';
+const description = 'Our commitment to an accessible website, and how to reach us about barriers.';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[720px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Accessibility' }]} />
+    <h1 class="font-display text-3xl md:text-4xl text-ink-900 mb-8">Accessibility statement</h1>
+
+    <div class="prose-body space-y-6 text-ink-700 leading-relaxed">
+      <p>
+        We want this website to work for everyone, including people using screen readers,
+        keyboard navigation, or other assistive technology. We've built this site to meet WCAG
+        2.2 Level AA guidelines: semantic markup, keyboard-operable navigation and forms, visible
+        focus states, sufficient color contrast, and descriptive text for images and links.
+      </p>
+      <p>
+        If you run into something on this site that doesn't work the way it should, we want to
+        know about it. Contact us at{' '}
+        <a href={`mailto:${business.email}`} class="text-signal font-semibold hover:underline">{business.email}</a>
+        {' '}or call {business.phoneDisplay}, and we'll do our best to fix it.
+      </p>
+    </div>
+  </section>
+</Layout>

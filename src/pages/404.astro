@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { business } from '../data/business';
+
+const title = 'Page Not Found | Woodward Automotive';
+const description = 'The page you were looking for couldn\'t be found.';
+---
+
+<Layout title={title} description={description} noindex>
+  <section class="mx-auto max-w-[600px] px-6 py-20 md:py-28 text-center">
+    <p class="font-display text-6xl text-signal mb-4">404</p>
+    <h1 class="font-display text-3xl md:text-4xl text-ink-900 mb-4">We couldn't find that page</h1>
+    <p class="text-ink-500 leading-relaxed mb-8">
+      It might have moved, or the link might be out of date. Try our services, or call us at{' '}
+      {business.phoneDisplay}.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <Button href="/services/" variant="primary">See our services</Button>
+      <Button href="/" variant="ghost">Back to home</Button>
+    </div>
+  </section>
+</Layout>

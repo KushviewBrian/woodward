@@ -1,0 +1,37 @@
+---
+const items = [
+  {
+    label: 'Honest service',
+    detail: 'We explain what’s wrong before we touch anything.',
+    href: '/faq/',
+  },
+  {
+    label: 'Clear estimates',
+    detail: 'You approve the work before we start.',
+    href: '/faq/',
+  },
+  {
+    label: 'Local team',
+    detail: 'An independent Fort Wayne shop, not a chain.',
+    href: '/about/',
+  },
+  {
+    label: 'All makes & models',
+    detail: 'Cars and light trucks, whatever you drive.',
+    href: '/faq/',
+  },
+];
+---
+
+<ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  {
+    items.map((item) => (
+      <li>
+        <a href={item.href} class="block h-full rounded border border-steel-300 bg-paper-alt p-4 hover:border-signal transition-colors">
+          <p class="font-display text-sm md:text-base text-ink-900">{item.label}</p>
+          <p class="text-xs md:text-sm text-ink-500 mt-1">{item.detail}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { business } from '../data/business';
+
+const title = 'Privacy Policy | Woodward Automotive';
+const description = 'How Woodward Automotive collects and uses information submitted through this website.';
+
+const lastUpdated = 'August 2026';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[720px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+    <h1 class="font-display text-3xl md:text-4xl text-ink-900 mb-2">Privacy policy</h1>
+    <p class="text-sm text-ink-500 mb-10">Last updated {lastUpdated}</p>
+
+    <div class="prose-body space-y-6 text-ink-700 leading-relaxed">
+      <p>
+        This page explains what information {business.legalName} collects through this website,
+        why, and how it's handled.
+      </p>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">Information we collect</h2>
+        <p>
+          When you submit a service request, we collect the information you provide: your name,
+          phone number, and optionally your email, vehicle details, and a description of what's
+          happening with your vehicle. We use this only to respond to your request.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">How we use it</h2>
+        <p>
+          Form submissions are used to contact you about scheduling service. We don't sell your
+          information, and we don't use it for marketing you haven't asked for.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">Form processing</h2>
+        <p>
+          <!-- CONFIRM: name the actual form provider once selected (Formspree, Basin, etc.) and link their privacy policy. -->
+          Form submissions are processed by a third-party form provider. [CONFIRM: provider name
+          and link, to be added once selected.]
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">Analytics</h2>
+        <p>
+          This site uses privacy-focused analytics that don't use cookies or collect personal
+          information — only aggregate information like page views and general location (city
+          level, from IP address, which is not stored).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">How long we keep information</h2>
+        <p>
+          <!-- CONFIRM: retention period. -->
+          [CONFIRM: how long form submissions are retained before deletion.]
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl text-ink-900 mb-2">Questions or requests</h2>
+        <p>
+          To ask what information we have about you, or to request it be deleted, contact us at{' '}
+          <a href={`mailto:${business.email}`} class="text-signal font-semibold hover:underline">{business.email}</a>
+          {' '}or call {business.phoneDisplay}.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

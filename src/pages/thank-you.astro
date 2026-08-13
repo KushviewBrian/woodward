@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { business } from '../data/business';
+
+const title = 'Request Received | Woodward Automotive';
+const description = 'Your service request has been received.';
+---
+
+<Layout title={title} description={description} noindex>
+  <section class="mx-auto max-w-[600px] px-6 py-20 md:py-28 text-center">
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto mb-6 text-success" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+    <h1 class="font-display text-3xl md:text-4xl text-ink-900 mb-4">Got it — thanks.</h1>
+    <p class="text-ink-500 leading-relaxed mb-8">
+      We've received your request and will get back to you during business hours
+      ({business.hoursDisplay}). If it's urgent, give us a call.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <Button href={business.phoneHref} variant="primary">Call {business.phoneDisplay}</Button>
+      <Button href="/" variant="ghost">Back to home</Button>
+    </div>
+  </section>
+</Layout>

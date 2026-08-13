@@ -1,0 +1,231 @@
+---
+import { publishedServices } from '../data/services';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+// TODO(owner): point this at the chosen form provider (Formspree/Basin/etc).
+// Left unset so a placeholder endpoint never accidentally goes live.
+const FORM_ACTION = '#';
+---
+
+<form
+  id="service-request-form"
+  method="POST"
+  action={FORM_ACTION}
+  class="space-y-5"
+  novalidate
+>
+  <div aria-live="polite" id="form-status" class="sr-only"></div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="name" class="block text-sm font-semibold text-ink-700 mb-1.5">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        autocomplete="name"
+        required
+        class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+        aria-describedby="name-error"
+      />
+      <p id="name-error" class="text-sm text-error mt-1 hidden">Please enter your name.</p>
+    </div>
+
+    <div>
+      <label for="phone" class="block text-sm font-semibold text-ink-700 mb-1.5">Phone</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        inputmode="tel"
+        autocomplete="tel"
+        required
+        class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+        aria-describedby="phone-error"
+      />
+      <p id="phone-error" class="text-sm text-error mt-1 hidden">Please enter a phone number we can reach you at.</p>
+    </div>
+  </div>
+
+  {!compact && (
+    <div>
+      <label for="email" class="block text-sm font-semibold text-ink-700 mb-1.5">Email <span class="font-normal text-ink-500">(optional)</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+      />
+    </div>
+  )}
+
+  {!compact && (
+    <div class="grid gap-5 sm:grid-cols-3">
+      <div>
+        <label for="vehicle-year" class="block text-sm font-semibold text-ink-700 mb-1.5">Year <span class="font-normal text-ink-500">(optional)</span></label>
+        <input type="text" id="vehicle-year" name="vehicleYear" inputmode="numeric" class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus" />
+      </div>
+      <div>
+        <label for="vehicle-make" class="block text-sm font-semibold text-ink-700 mb-1.5">Make <span class="font-normal text-ink-500">(optional)</span></label>
+        <input type="text" id="vehicle-make" name="vehicleMake" class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus" />
+      </div>
+      <div>
+        <label for="vehicle-model" class="block text-sm font-semibold text-ink-700 mb-1.5">Model <span class="font-normal text-ink-500">(optional)</span></label>
+        <input type="text" id="vehicle-model" name="vehicleModel" class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus" />
+      </div>
+    </div>
+  )}
+
+  <div>
+    <label for="service" class="block text-sm font-semibold text-ink-700 mb-1.5">Service needed</label>
+    <select
+      id="service"
+      name="service"
+      required
+      class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+    >
+      <option value="">Choose one&hellip;</option>
+      {publishedServices.map((service) => <option value={service.name}>{service.name}</option>)}
+      <option value="Not sure">Not sure / something else</option>
+    </select>
+  </div>
+
+  {!compact && (
+    <div>
+      <label for="details" class="block text-sm font-semibold text-ink-700 mb-1.5">What's happening? <span class="font-normal text-ink-500">(optional)</span></label>
+      <textarea
+        id="details"
+        name="details"
+        rows="4"
+        placeholder="A noise, a light, how it feels — whatever you've noticed."
+        class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+      ></textarea>
+    </div>
+  )}
+
+  {!compact && (
+    <fieldset>
+      <legend class="block text-sm font-semibold text-ink-700 mb-1.5">Preferred contact method</legend>
+      <div class="flex gap-6">
+        <label class="inline-flex items-center gap-2 text-sm text-ink-700">
+          <input type="radio" name="preferredContact" value="Call" checked class="h-4 w-4" />
+          Call
+        </label>
+        <label class="inline-flex items-center gap-2 text-sm text-ink-700">
+          <input type="radio" name="preferredContact" value="Text" class="h-4 w-4" />
+          Text
+        </label>
+        <label class="inline-flex items-center gap-2 text-sm text-ink-700">
+          <input type="radio" name="preferredContact" value="Email" class="h-4 w-4" />
+          Email
+        </label>
+      </div>
+    </fieldset>
+  )}
+
+  {!compact && (
+    <div>
+      <label for="preferred-time" class="block text-sm font-semibold text-ink-700 mb-1.5">Preferred day/time <span class="font-normal text-ink-500">(optional)</span></label>
+      <input
+        type="text"
+        id="preferred-time"
+        name="preferredTime"
+        placeholder="e.g. weekday mornings"
+        class="w-full rounded border border-steel-300 px-3.5 py-2.5 text-base bg-paper focus-visible:border-focus"
+      />
+    </div>
+  )}
+
+  <div>
+    <label class="inline-flex items-start gap-2.5 text-sm text-ink-700">
+      <input type="checkbox" name="consent" required class="mt-0.5 h-4 w-4" aria-describedby="consent-error" />
+      <span>It's okay to contact me about this request.</span>
+    </label>
+    <p id="consent-error" class="text-sm text-error mt-1 hidden">Please check this box so we can follow up with you.</p>
+  </div>
+
+  <!-- Honeypot: hidden from sighted users and screen readers, left open for bots. -->
+  <div class="absolute -left-[9999px]" aria-hidden="true">
+    <label for="website">Leave this field blank</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="formLoadedAt" id="form-loaded-at" value="" />
+
+  <button
+    type="submit"
+    class="w-full sm:w-auto inline-flex items-center justify-center rounded bg-signal text-white font-semibold px-8 py-3.5 min-h-12 hover:bg-signal-hover transition-colors"
+  >
+    Send request
+  </button>
+</form>
+
+<script>
+  const form = document.getElementById('service-request-form') as HTMLFormElement | null;
+  const loadedAt = document.getElementById('form-loaded-at') as HTMLInputElement | null;
+  const status = document.getElementById('form-status');
+
+  if (loadedAt) loadedAt.value = String(Date.now());
+
+  function showError(input: HTMLElement, errorId: string) {
+    const error = document.getElementById(errorId);
+    input.setAttribute('aria-invalid', 'true');
+    error?.classList.remove('hidden');
+  }
+
+  function clearError(input: HTMLElement, errorId: string) {
+    const error = document.getElementById(errorId);
+    input.removeAttribute('aria-invalid');
+    error?.classList.add('hidden');
+  }
+
+  form?.addEventListener('submit', (e) => {
+    let hasError = false;
+
+    const name = document.getElementById('name') as HTMLInputElement;
+    const phone = document.getElementById('phone') as HTMLInputElement;
+    const consent = form.querySelector('input[name="consent"]') as HTMLInputElement;
+
+    if (name && !name.value.trim()) {
+      showError(name, 'name-error');
+      hasError = true;
+    } else if (name) {
+      clearError(name, 'name-error');
+    }
+
+    if (phone && phone.value.trim().replace(/\D/g, '').length < 10) {
+      showError(phone, 'phone-error');
+      hasError = true;
+    } else if (phone) {
+      clearError(phone, 'phone-error');
+    }
+
+    if (consent && !consent.checked) {
+      showError(consent, 'consent-error');
+      hasError = true;
+    } else if (consent) {
+      clearError(consent, 'consent-error');
+    }
+
+    if (hasError) {
+      e.preventDefault();
+      if (status) status.textContent = 'Please fix the highlighted fields and try again.';
+    }
+  });
+
+  // Validate on blur, not on keystroke — don't tell someone they're wrong
+  // before they've finished typing.
+  document.getElementById('name')?.addEventListener('blur', function () {
+    const el = this as HTMLInputElement;
+    if (el.value.trim()) clearError(el, 'name-error');
+  });
+  document.getElementById('phone')?.addEventListener('blur', function () {
+    const el = this as HTMLInputElement;
+    if (el.value.trim().replace(/\D/g, '').length >= 10) clearError(el, 'phone-error');
+  });
+</script>

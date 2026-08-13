@@ -1,0 +1,64 @@
+---
+import { business, fullAddress } from '../data/business';
+import { publishedServices } from '../data/services';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink-900 text-paper pb-20 md:pb-0">
+  <div class="mx-auto max-w-[1200px] px-6 py-14 grid gap-10 md:grid-cols-4">
+    <div>
+      <p class="font-display text-lg mb-3">Woodward <span class="text-signal">Automotive</span></p>
+      <p class="text-sm text-steel-300 leading-relaxed">
+        {fullAddress}
+      </p>
+      <p class="text-sm text-steel-300 mt-1">{business.hoursDisplay}</p>
+      <a href={business.phoneHref} class="block mt-3 font-semibold hover:text-signal transition-colors">
+        {business.phoneDisplay}
+      </a>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-steel-300 mb-3">Services</h2>
+      <ul class="space-y-2 text-sm">
+        {
+          publishedServices.map((service) => (
+            <li>
+              <a href={`/services/${service.slug}/`} class="hover:text-signal transition-colors">
+                {service.name}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href="/services/" class="hover:text-signal transition-colors">All services</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-steel-300 mb-3">Shop</h2>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/about/" class="hover:text-signal transition-colors">About</a></li>
+        <li><a href="/reviews/" class="hover:text-signal transition-colors">Reviews</a></li>
+        <li><a href="/faq/" class="hover:text-signal transition-colors">FAQ</a></li>
+        <li><a href="/contact/" class="hover:text-signal transition-colors">Contact</a></li>
+        <li><a href={business.facebookUrl} rel="noopener" target="_blank" class="hover:text-signal transition-colors">Facebook</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-steel-300 mb-3">Legal</h2>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/privacy/" class="hover:text-signal transition-colors">Privacy policy</a></li>
+        <li><a href="/accessibility/" class="hover:text-signal transition-colors">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-ink-700">
+    <div class="mx-auto max-w-[1200px] px-6 py-4 text-xs text-steel-300">
+      &copy; {year} {business.legalName}. All rights reserved.
+    </div>
+  </div>
+</footer>

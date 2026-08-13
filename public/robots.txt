@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.woodwardautomotivellc.com/sitemap-index.xml

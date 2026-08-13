@@ -1,0 +1,53 @@
+---
+import { business } from '../data/business';
+import Button from './Button.astro';
+
+const navLinks = [
+  { href: '/services/', label: 'Services' },
+  { href: '/about/', label: 'About' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-steel-300 bg-paper">
+  <div class="mx-auto max-w-[1200px] px-6 py-4 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <span class="font-display text-xl md:text-2xl tracking-tight text-ink-900">
+        Woodward <span class="text-signal">Automotive</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-ink-700 hover:text-ink-900 font-medium transition-colors',
+              { 'text-ink-900 underline underline-offset-4 decoration-signal decoration-2': currentPath === link.href },
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden md:block">
+      <Button href="/contact/" variant="primary">Request Service</Button>
+    </div>
+
+    <a
+      href={business.phoneHref}
+      class="md:hidden inline-flex items-center justify-center min-h-12 min-w-12 rounded bg-signal text-white"
+      aria-label={`Call Woodward Automotive at ${business.phoneDisplay}`}
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    </a>
+  </div>
+</header>

@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import Button from '../components/Button.astro';
+import { business } from '../data/business';
+
+const title = 'About Woodward Automotive | Fort Wayne Auto Shop';
+const description =
+  'An independent Fort Wayne auto repair shop serving cars and light trucks since 2022. Meet the team.';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+    <h1 class="font-display text-3xl md:text-5xl text-ink-900 mb-4">About Woodward Automotive</h1>
+
+    <div class="grid gap-10 md:grid-cols-2 md:items-center mt-10 mb-16">
+      <PhotoPlaceholder label="Owner portrait" aspect="aspect-[4/3]" />
+      <div class="prose-body">
+        <p class="text-ink-700 leading-relaxed mb-4">
+          Woodward Automotive is an independent auto repair shop in Fort Wayne, working on cars
+          and light trucks — all makes and models. We started the shop on a simple idea: tell
+          people the truth about their car, price it fairly, and do the work right the first
+          time.
+        </p>
+        <p class="text-ink-700 leading-relaxed mb-4">
+          <!-- CONFIRM: replace with the owner's actual founding story, background, and what led to opening the shop. -->
+          [CONTENT PLACEHOLDER — owner's story: background, why Fort Wayne, why start this shop.
+          Replace before publishing.]
+        </p>
+        <p class="text-ink-700 leading-relaxed">
+          We're not the biggest shop in town, and we're not trying to be. We'd rather have fewer
+          customers who trust us than a lot of customers who don't.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-16">
+      <h2 class="font-display text-2xl text-ink-900 mb-6">The team</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div>
+          <PhotoPlaceholder label="Team portrait" aspect="aspect-square" />
+          <p class="mt-3 font-semibold text-ink-900">[CONFIRM: name]</p>
+          <p class="text-sm text-ink-500">[CONFIRM: role]</p>
+        </div>
+      </div>
+      <p class="text-sm text-ink-500 mt-6">
+        <!-- CONFIRM: owner to supply staff names, roles, and any qualifications to publish. -->
+        Team photos and bios pending — see CONTENT-TODO.md.
+      </p>
+    </div>
+
+    <div class="rounded border border-steel-300 bg-paper-alt p-8 text-center">
+      <h2 class="font-display text-2xl text-ink-900 mb-3">Serving Fort Wayne and nearby communities</h2>
+      <p class="text-ink-700 max-w-[60ch] mx-auto mb-6">
+        Honest work, fair pricing, and a shop that explains what it's doing.
+      </p>
+      <Button href="/contact/" variant="primary">Request Service</Button>
+    </div>
+  </section>
+</Layout>

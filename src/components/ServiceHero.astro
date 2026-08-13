@@ -1,0 +1,29 @@
+---
+import Button from './Button.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import { business } from '../data/business';
+import type { Service } from '../data/services';
+
+interface Props {
+  service: Service;
+  intro: string;
+}
+
+const { service, intro } = Astro.props;
+---
+
+<section class="bg-ink-900 text-paper">
+  <div class="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
+    <div class="[&_a]:text-steel-300 [&_span]:text-paper [&_a:hover]:text-signal">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: service.name }]} />
+    </div>
+    <h1 class="font-display text-3xl md:text-5xl mb-4 max-w-[20ch]">{service.name} in Fort Wayne</h1>
+    <p class="text-steel-300 leading-relaxed max-w-[60ch] mb-8">{intro}</p>
+    <div class="flex flex-wrap gap-4">
+      <Button href="/contact/" variant="primary">Request Service</Button>
+      <Button href={business.phoneHref} variant="ghost" class="!border-steel-300 !text-paper hover:!bg-ink-700">
+        Call {business.phoneDisplay}
+      </Button>
+    </div>
+  </div>
+</section>

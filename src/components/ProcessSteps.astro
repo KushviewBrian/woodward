@@ -1,0 +1,36 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Tell us what’s happening',
+    body: 'Call or send a request. Describe what you’re noticing — a sound, a light, a feeling. You don’t need the right terminology.',
+  },
+  {
+    number: '02',
+    title: 'We inspect and explain',
+    body: 'We find the cause and tell you what we found in plain language, including what can wait and what can’t.',
+  },
+  {
+    number: '03',
+    title: 'You approve the work',
+    body: 'We give you the cost before we start. Nothing happens without your OK.',
+  },
+  {
+    number: '04',
+    title: 'We get you back on the road',
+    body: 'We finish the work and tell you what to keep an eye on.',
+  },
+];
+---
+
+<ol class="grid gap-8 md:grid-cols-4">
+  {
+    steps.map((step) => (
+      <li>
+        <span class="font-display text-4xl text-signal">{step.number}</span>
+        <h3 class="font-display text-lg mt-2 mb-2 text-ink-900">{step.title}</h3>
+        <p class="text-sm text-ink-500 leading-relaxed">{step.body}</p>
+      </li>
+    ))
+  }
+</ol>

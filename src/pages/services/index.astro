@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { publishedServices } from '../../data/services';
+import { business } from '../../data/business';
+
+const title = 'Auto Repair Services | Woodward Automotive Fort Wayne';
+const description =
+  'Diagnostics, brake repair, oil changes and maintenance, suspension and steering for cars and light trucks in Fort Wayne, IN.';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
+    <h1 class="font-display text-3xl md:text-5xl text-ink-900 mb-4">Auto repair services</h1>
+    <p class="text-ink-500 leading-relaxed max-w-[60ch] mb-10">
+      Cars and light trucks, all makes and models. Not sure what's wrong? Tell us what you're
+      noticing and we'll figure out the rest.
+    </p>
+
+    <div class="grid gap-6 sm:grid-cols-2 mb-12">
+      {publishedServices.map((service) => <ServiceCard service={service} />)}
+    </div>
+
+    <div class="rounded border border-steel-300 bg-paper-alt p-6 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-ink-700">Not sure which service you need?</p>
+      <a href={business.phoneHref} class="font-semibold text-signal hover:underline">
+        Call {business.phoneDisplay}
+      </a>
+    </div>
+  </section>
+</Layout>

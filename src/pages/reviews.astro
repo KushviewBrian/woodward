@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import Button from '../components/Button.astro';
+
+const title = 'Reviews | Woodward Automotive, Fort Wayne IN';
+const description =
+  'Read verified reviews from Woodward Automotive customers in Fort Wayne, IN.';
+---
+
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reviews' }]} />
+    <h1 class="font-display text-3xl md:text-5xl text-ink-900 mb-4">Reviews</h1>
+    <p class="text-ink-500 leading-relaxed max-w-[60ch] mb-10">
+      Every review here is real, dated, and linked back to where it was posted. We don't write our
+      own.
+    </p>
+
+    <ReviewsSection />
+
+    <div class="rounded border border-steel-300 bg-paper-alt p-8 text-center mt-12">
+      <h2 class="font-display text-2xl text-ink-900 mb-3">Been in for service?</h2>
+      <p class="text-ink-700 max-w-[60ch] mx-auto mb-6">
+        We'd appreciate a review — it genuinely helps a small local shop.
+      </p>
+      <Button href="https://www.yelp.com/biz/woodward-automotive-fort-wayne" variant="primary">
+        Leave a review on Yelp
+      </Button>
+    </div>
+  </section>
+</Layout>
